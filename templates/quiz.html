@@ -1,0 +1,1 @@
+<h1>Chicago Landlord Quiz</h1><form method='POST'>{% for q in questions %}<p><strong>{{ q.question }}</strong><br>{% for a, v in q.answers %}<label><input type='radio' name='answers' value='{{ v }}'> {{ a }}</label><br>{% endfor %}</p>{% endfor %}<button type='submit'>Next</button></form>
