@@ -84,7 +84,10 @@ def quiz():
     if request.method == 'POST':
         selected = request.form.get('answer')
         if selected:
-            session['answers'].append(selected)
+            answers = session.get('answers', [])
+            answers.append(selected)
+            session['answers'] = answers  # Force session update
+
             session['question_index'] += 1
             index += 1
 
