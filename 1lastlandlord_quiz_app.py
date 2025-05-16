@@ -88,7 +88,7 @@ def quiz():
             answers.append(selected)
             session['answers'] = answers  # Force session update
 
-            session['question_index'] += 1
+            session['question_index'] = session.get('question_index', 0) + 1
             index += 1
 
         if index >= len(questions):
