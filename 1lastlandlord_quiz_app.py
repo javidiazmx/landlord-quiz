@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+# ✅ Flask App (Updated for One-Question-at-a-Time Quiz)
+from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
@@ -7,6 +8,7 @@ import re
 import requests
 
 app = Flask(__name__)
+app.secret_key = 'secret_key_to_track_session'  # Required for session tracking
 
 EMAILS_TO = ["new-deal9c8d81c829@newlead.leadsimple.com", "javier.diaz@gcrealtyinc.com"]
 EMAIL_FROM = "javier.diaz@gcrealtyinc.com"
@@ -73,14 +75,28 @@ def send_email(data):
 
 @app.route('/', methods=['GET', 'POST'])
 def quiz():
+    if 'question_index' not in session:
+        session['question_index'] = 0
+        session['answers'] = []
+
+    index = session['question_index']
+
     if request.method == 'POST':
-        selected = request.form.getlist('answers')
-        types = {key: 0 for key in suggestions}
-        for answer in selected:
-            types[answer] += 1
-        top_result = max(types, key=types.get)
-        return redirect(url_for('form', result=top_result))
-    return render_template('quiz.html', questions=questions)
+        selected = request.form.get('answer')
+        if selected:
+            session['answers'].append(selected)
+            session['question_index'] += 1
+            index += 1
+
+        if index >= len(questions):
+            types = {key: 0 for key in suggestions}
+            for a in session['answers']:
+                types[a] += 1
+            top_result = max(types, key=types.get)
+            session.clear()
+            return redirect(url_for('form', result=top_result))
+
+    return render_template('quiz.html', question=questions[index], index=index, total=len(questions))
 
 @app.route('/form', methods=['GET', 'POST'])
 def form():
@@ -89,21 +105,26 @@ def form():
         info = {key: request.form.get(key, '') for key in [
             "Name", "Email", "Phone", "Property Address",
             "How Many Rental Units Do You own", "I Am", "Anything You Want To Share W/Us"]}
+
         if not all(info[field].strip() for field in ["Name", "Email", "Phone", "Property Address"]):
             return "Please fill in all required fields.", 400
+
         if not re.match(r"[^@]+@[^@]+\.[a-zA-Z]{2,}", info['Email']):
             return "Invalid email.", 400
+
         info["Quiz Result"] = result
         with open("quiz_results.csv", "a", newline='') as f:
             writer = csv.writer(f)
             if f.tell() == 0:
                 writer.writerow(list(info.keys()))
             writer.writerow(list(info.values()))
+
         send_email(info)
         return render_template("result.html", result=result, message=suggestions[result])
+
     return render_template("form.html", result=result)
 
 if __name__ == '__main__':
     import os
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
