@@ -92,11 +92,11 @@ def quiz():
             answers = session.get('answers', [])
             answers.append(selected)
             session['answers'] = answers
-            session['question_index'] = index + 1
-            index = session['question_index']  # Update index after increment
-            session.modified = True  # 💥 This is critical
-            
+            index += 1
+            session['question_index'] = index
+            session.modified = True
 
+        # 🔁 Check after incrementing
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
             for a in session['answers']:
@@ -105,7 +105,9 @@ def quiz():
             session.clear()
             return redirect(url_for('form', result=top_result))
 
+    # ✅ Only render question after checking POST
     return render_template('quiz.html', question=questions[index], index=index, total=len(questions))
+
 
 
 
