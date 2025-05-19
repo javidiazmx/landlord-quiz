@@ -88,8 +88,9 @@ def quiz():
             answers.append(selected)
             session['answers'] = answers
             session['question_index'] = index + 1
-            session.modified = True  # 💥 This is critical
             index = session['question_index']  # Update index after increment
+            session.modified = True  # 💥 This is critical
+            
 
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
