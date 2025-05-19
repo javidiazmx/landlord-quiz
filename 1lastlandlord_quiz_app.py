@@ -82,13 +82,15 @@ def quiz():
     index = session['question_index']
 
     if request.method == 'POST':
-        selected = request.form.get('answer')
+    selected = request.form.get('answer')
         if selected:
             answers = session.get('answers', [])
             answers.append(selected)
             session['answers'] = answers
             index += 1
             session['question_index'] = index
+            session.modified = True  # 🔥 This line ensures session updates are saved
+
 
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
