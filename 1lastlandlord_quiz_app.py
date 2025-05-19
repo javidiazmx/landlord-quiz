@@ -8,7 +8,7 @@ import re
 import requests
 
 app = Flask(__name__)
-app.secret_key = 'secret_key_to_track_session'  # Required for session tracking
+app.secret_key = 'f82fbd3a1d7d472a9c4ad5a33e8f5871'  # Required for session tracking
 
 EMAILS_TO = ["new-deal9c8d81c829@newlead.leadsimple.com", "javier.diaz@gcrealtyinc.com"]
 EMAIL_FROM = "javier.diaz@gcrealtyinc.com"
