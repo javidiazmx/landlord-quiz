@@ -84,11 +84,11 @@ def quiz():
     if request.method == 'POST':
         selected = request.form.get('answer')
         if selected:
-    answers = session.get('answers', [])
-    answers.append(selected)
-    session['answers'] = answers
-    session['question_index'] = session.get('question_index', 0) + 1
-    index += 1
+            answers = session.get('answers', [])
+            answers.append(selected)
+            session['answers'] = answers
+            index += 1
+            session['question_index'] = index
 
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
