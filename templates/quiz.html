@@ -18,5 +18,13 @@
         {% endfor %}
         <button type="submit" style="background-color:#8db88b; color:white; padding:10px 20px; border:none; cursor:pointer;">Next</button>
     </form>
+    <script>
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ height }, "*");
+  }
+  window.onload = sendHeight;
+  window.onresize = sendHeight;
+</script>
 </body>
 </html>
