@@ -89,7 +89,7 @@ def quiz():
             session['answers'] = answers
             index += 1
             session['question_index'] = index
-            session.modified = True  # Ensures session updates are saved
+            session.modified = True  # 🔥 ensures changes are saved
 
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
@@ -100,6 +100,7 @@ def quiz():
             return redirect(url_for('form', result=top_result))
 
     return render_template('quiz.html', question=questions[index], index=index, total=len(questions))
+
 
 
 @app.route('/form', methods=['GET', 'POST'])
