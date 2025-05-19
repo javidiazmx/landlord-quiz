@@ -8,6 +8,11 @@ import re
 import requests
 
 app = Flask(__name__)
+app.config.update(
+    SESSION_COOKIE_SAMESITE="None",
+    SESSION_COOKIE_SECURE=True
+)
+
 app.secret_key = 'f82fbd3a1d7d472a9c4ad5a33e8f5871'  # Required for session tracking
 
 EMAILS_TO = ["new-deal9c8d81c829@newlead.leadsimple.com", "javier.diaz@gcrealtyinc.com"]
