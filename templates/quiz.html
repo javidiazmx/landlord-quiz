@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chicago Landlord Quiz</title>
+    <meta charset="UTF-8">
+    <title>Chicago Property Owner Quiz</title>
 </head>
-<body>
-    <h1>Chicago Landlord Quiz</h1>
-    <p><strong>Question {{ index + 1 }} of {{ total }}</strong></p>
-    <form method="post">
+<body style="font-family: Arial; background-color: white; padding: 20px; max-width: 600px; margin: auto;">
+    <h2>Question {{ index + 1 }} of {{ total }}</h2>
+    <form method="POST">
         <p><strong>{{ question.question }}</strong></p>
-        {% for answer, value in question.answers %}
-            <label>
-                <input type="radio" name="answer" value="{{ value }}" required>
-                {{ answer }}
-            </label><br>
+        {% for text, value in question.answers %}
+            <div style="margin-bottom: 8px;">
+                <label>
+                    <input type="radio" name="answer" value="{{ value }}" required>
+                    {{ text }}
+                </label>
+            </div>
         {% endfor %}
-        <br>
-        <button type="submit">Next</button>
+        <button type="submit" style="background-color: #8db88b; color: white; padding: 10px 20px; border: none; cursor: pointer;">Next</button>
     </form>
 </body>
 </html>
