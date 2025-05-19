@@ -87,9 +87,10 @@ def quiz():
             answers = session.get('answers', [])
             answers.append(selected)
             session['answers'] = answers
-            index += 1
-            session['question_index'] = index
-            session.modified = True  # 🔥 ensures changes are saved
+            session['question_index'] = index + 1
+            session.modified = True  # 💥 This is critical
+
+            index = session['question_index']  # Update index after increment
 
         if index >= len(questions):
             types = {key: 0 for key in suggestions}
@@ -100,6 +101,7 @@ def quiz():
             return redirect(url_for('form', result=top_result))
 
     return render_template('quiz.html', question=questions[index], index=index, total=len(questions))
+
 
 
 
