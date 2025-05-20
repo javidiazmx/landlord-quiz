@@ -47,6 +47,23 @@
         window.onload = sendHeight;
         window.onresize = sendHeight;
     </script>
+<script>
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ height }, "*");
+  }
+
+  window.onload = sendHeight;
+  window.onresize = sendHeight;
+
+  // Keep checking height for a short time after load (to catch dropdowns, animations, etc.)
+  let i = 0;
+  const interval = setInterval(() => {
+    sendHeight();
+    i++;
+    if (i > 10) clearInterval(interval);
+  }, 200);
+</script>
 
 </body>
 </html>
