@@ -1,1 +1,56 @@
-<h1>Your Quiz Result</h1><h2>{{ result }}</h2><p>{{ message }}</p><a href='https://calendly.com/shea_murray/quick-conversation-15-min'><button>Schedule a Call</button></a>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Quiz Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #155200;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #155200;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #76a374;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Quiz Result</h1>
+  <h2>{{ result }}</h2>
+  <p>{{ message }}</p>
+  <a href="https://calendly.com/shea_murray/quick-conversation-15-min" target="_blank">
+    <button>Schedule a Call</button>
+  </a>
+</body>
+</html>
