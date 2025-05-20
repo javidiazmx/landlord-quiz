@@ -1,149 +1,157 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tell us about yourself</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tell us about yourself</title>
+    <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      font-size: 16px;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #fff;
+        font-size: 16px;
     }
 
-    html, body {
-    height: 100vh;
-    overflow-y: auto;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-    background: #fff;
-}
-
+    body {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     h2 {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
+        font-size: 24px;
     }
 
     label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 3px;
-      font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-weight: bold;
     }
 
     input[type="text"],
     input[type="email"],
     input[type="tel"],
-    select {
-      width: 100%;
-      padding: 8px 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-bottom: 10px;
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
 
+    button,
     input[type="submit"] {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #155200;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background-color: #155200;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
     }
 
+    button:hover,
     input[type="submit"]:hover {
-      background-color: #76a374;
+        background-color: #76a374;
     }
-  </style>
+
+    @media (max-width: 600px) {
+        html, body {
+            padding: 10px;
+            margin: 0;
+        }
+
+        form {
+            padding-bottom: 50px; /* Add spacing to bottom to reduce cutoff */
+        }
+    }
+    </style>
 </head>
 <body>
-  <h2>Tell us about yourself</h2>
-  <form method="POST">
-    <label for="name">Name:</label>
-    <input type="text" name="Name" id="name" required>
+    <h2>Tell us about yourself</h2>
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="Name" id="name" required>
 
-    <label for="email">Email:</label>
-    <input type="email" name="Email" id="email" required>
+        <label for="email">Email:</label>
+        <input type="email" name="Email" id="email" required>
 
-    <label for="phone">Phone:</label>
-    <input type="tel" name="Phone" id="phone" required>
+        <label for="phone">Phone:</label>
+        <input type="tel" name="Phone" id="phone" required>
 
-    <label for="address">Address:</label>
-    <input id="address" name="Property Address" type="text" required>
+        <label for="address">Address:</label>
+        <input id="address" name="Property Address" type="text" required>
 
-    <label for="units">Units:</label>
-    <select name="How Many Rental Units Do You own" id="units" required>
-      <option value="">-- Select --</option>
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-      <option>10+</option>
-    </select>
+        <label for="units">Units:</label>
+        <select name="How Many Rental Units Do You own" id="units" required>
+            <option value="">-- Select --</option>
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10+</option>
+        </select>
 
-    <label for="iam">I Am:</label>
-    <select name="I Am" id="iam" required>
-      <option value="">-- Select --</option>
-      <option>Looking To Buy My First Property</option>
-      <option>Looking To Buy More Properties</option>
-      <option>Looking To Move Out & Rent My Place</option>
-      <option>Looking To Hire Someone To Find Me A Tenant</option>
-      <option>I Currently Self Manage & Considering Hiring A PM</option>
-      <option>I Currently Self Manage & Just Want To Be A Sharper Investor</option>
-    </select>
+        <label for="iam">I Am:</label>
+        <select name="I Am" id="iam" required>
+            <option value="">-- Select --</option>
+            <option>Looking To Buy My First Property</option>
+            <option>Looking To Buy More Properties</option>
+            <option>Looking To Move Out & Rent My Place</option>
+            <option>Looking To Hire Someone To Find Me A Tenant</option>
+            <option>I Currently Self Manage & Considering Hiring A PM</option>
+            <option>I Currently Self Manage & Just Want To Be A Sharper Investor</option>
+        </select>
 
-    <label for="comments">Comments:</label>
-    <input type="text" name="Anything You Want To Share W/Us" id="comments">
+        <label for="comments">Comments:</label>
+        <input type="text" name="Anything You Want To Share W/Us" id="comments">
 
-    <input type="submit" value="Submit">
-  </form>
+        <input type="submit" value="Submit">
+    </form>
 
-  <script>
-    function initAutocomplete() {
-      const input = document.getElementById("address");
-      if (input) {
-        new google.maps.places.Autocomplete(input, {
-          types: ['address'],
-          componentRestrictions: { country: "us" }
-        });
+    <script>
+      function initAutocomplete() {
+        const input = document.getElementById("address");
+        if (input) {
+          const autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['address'],
+            componentRestrictions: { country: "us" }
+          });
+        }
       }
-    }
-  </script>
+    </script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_tyABZ6Yr0vzEbBXx80tq9qbcvEP-y0&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_tyABZ6Yr0vzEbBXx80tq9qbcvEP-y0&libraries=places&callback=initAutocomplete" async defer></script>
 
-  <script>
-    function sendHeight() {
-      const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-      window.parent.postMessage({ type: "resize-iframe", height: height }, "*");
-    }
+    <script>
+      function sendHeight() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ height }, "*");
+      }
 
-    window.onload = sendHeight;
-    window.onresize = sendHeight;
+      window.onload = sendHeight;
+      window.onresize = sendHeight;
 
-    let i = 0;
-    const interval = setInterval(() => {
-      sendHeight();
-      i++;
-      if (i > 10) clearInterval(interval);
-    }, 250);
-  </script>
+      let i = 0;
+      const interval = setInterval(() => {
+        sendHeight();
+        i++;
+        if (i > 10) clearInterval(interval);
+      }, 200);
+    </script>
 </body>
 </html>
