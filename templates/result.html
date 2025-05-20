@@ -3,42 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Quiz Result</title>
+  <title>Quiz Result</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
       max-width: 600px;
       margin: 40px auto;
       padding: 20px;
-      background: #fff;
-      color: #333;
-      line-height: 1.6;
+      text-align: center;
+      font-size: 18px;
+      box-sizing: border-box;
     }
 
     h1 {
       font-size: 28px;
+      color: #155200;
       margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 24px;
-      color: #155200;
+      font-size: 22px;
+      color: #444;
       margin-bottom: 20px;
     }
 
     p {
       font-size: 18px;
       margin-bottom: 30px;
+      line-height: 1.5;
     }
 
     button {
-      background-color: #155200;
-      color: white;
       padding: 12px 24px;
       font-size: 16px;
+      background-color: #155200;
+      color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-weight: bold;
     }
 
     button:hover {
@@ -53,5 +58,21 @@
   <a href="https://calendly.com/shea_murray/quick-conversation-15-min" target="_blank">
     <button>Schedule a Call</button>
   </a>
+  <script>
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ height }, "*");
+    }
+
+    window.onload = sendHeight;
+    window.onresize = sendHeight;
+
+    let i = 0;
+    const interval = setInterval(() => {
+      sendHeight();
+      i++;
+      if (i > 10) clearInterval(interval);
+    }, 200);
+  </script>
 </body>
 </html>
