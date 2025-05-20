@@ -71,6 +71,23 @@
   </style>
 </head>
 <body>
+  <body style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px;">
+    <h1 style="font-size: 28px; font-weight: bold; margin-bottom: 30px; text-align: center;">Find what kind of landlord you are)</h1>
+    
+    <h2>Question {{ index + 1 }} of {{ total }}</h2>
+    <form method="POST">
+        <p><strong>{{ question.question }}</strong></p>
+        {% for text, value in question.answers %}
+            <div style="margin-bottom: 10px;">
+                <label>
+                    <input type="radio" name="answer" value="{{ value }}" required>
+                    {{ text }}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit" style="background-color:#155200; color:white; padding:10px 20px; border:none; cursor:pointer;">Next</button>
+    </form>
+
   <h2>Question {{ index + 1 }} of {{ total }}</h2>
   <form method="POST">
     <p>{{ question.question }}</p>
